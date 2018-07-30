@@ -21,10 +21,11 @@ fs.readdir(`./commands/`,(err, files)=>{
 client.on('ready', () => {
 	var moment = require('moment')
 	var ytspeak = client.guilds.get("349889832899706883")
-	let online = ytspeak.members.filter(member => member.user.presence.status !== 'offline');
+	
+	setInterval(function(){
+		let online = ytspeak.members.filter(member => member.user.presence.status !== 'offline');
 	var hr = new Date().getHours() +2
 	if(hr == 25) hr = 1
-	setInterval(function(){
   client.channels.get("470869924647141397").edit({name: `Osób online: ${online.size-ytspeak.members.filter(m => m.user.bot).size}`});
   client.channels.get("470869840027189248").edit({name: `Liczba Członków: ${ytspeak.memberCount}`});
   client.channels.get("470869709525614592").edit({name: `Liczba botów: ${ytspeak.members.filter(m => m.user.bot).size}`})
