@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const config = require(`../config.json`)
 module.exports.run = async (client, message, args) => {
 
-  let pages = [`**Prefix: !**\nLiczba wszystkich komend: ${client.commands.size}`, '**Komendy Informacyjne**\n'+ client.commands.filter(cmd => cmd.help.category === 'info').map(cmd => '\ ' + cmd.help.name + '\ ').join("\n")]; 
+  let pages = [`**Prefix: !**\nLiczba wszystkich komend: ${client.commands.size}`, '**Komendy Informacyjne**\n'+ client.commands.filter(cmd => cmd.help.category === 'info').map(cmd => '\ ' + cmd.help.name + '\ ').join("\n"),'**Komendy Administracyjne**\n'+ client.commands.filter(cmd => cmd.help.category === 'admin').map(cmd => '\ ' + cmd.help.name + '\ ').join("\n")]; 
   let page = 1;
 
   const embed = new Discord.RichEmbed()
