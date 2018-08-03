@@ -27,7 +27,7 @@ client.on('ready', () => {
 	var hr = new Date().getHours() +2
 	if(hr == 25) hr = 1
 		var high = ''
-		if(high<online) high = online
+		if(high<online.size) high = online
   client.channels.get("470869924647141397").edit({name: `Osób online: ${online.size-ytspeak.members.filter(m => m.user.bot).size}`});
   client.channels.get("470869840027189248").edit({name: `Liczba Członków: ${ytspeak.memberCount}`});
   client.channels.get("470869709525614592").edit({name: `Liczba botów: ${ytspeak.members.filter(m => m.user.bot).size}`})
