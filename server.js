@@ -30,15 +30,15 @@ fs.readdir(`./commands/`,(err, files)=>{
 
 
 client.on('ready', () => {
-	
-	var high = ''
+	database.ref(`/staty/online`).once("value")
+	.then(async dbo => {
+	var high = dbo.val()
 	var moment = require('moment')
 	var ytspeak = client.guilds.get("349889832899706883")
 	
 	setInterval(function(){
-		database.ref(`/staty/online`).once("value")
-	.then(async dbo => {
-			high= dbo.val()
+		
+	
 		let online = ytspeak.members.filter(member => member.user.presence.status !== 'offline');
 	var hr = new Date().getHours() +2
 	if(hr == 25) hr = 1
