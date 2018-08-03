@@ -43,7 +43,7 @@ client.on('ready', () => {
 		
 		if(high<online.size-ytspeak.members.filter(m => m.user.bot).size) {
 			high = online.size-ytspeak.members.filter(m => m.user.bot).size
-			database.ref(/staty/).set({ 
+			database.ref(`/staty/`).set({ 
 				online:high
 			})
 		}
