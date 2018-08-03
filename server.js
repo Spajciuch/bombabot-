@@ -4,6 +4,17 @@ client.commands = new Discord.Collection()
 var config = require("./config.json")
 var prefix = config.prefix
 var fs = require('fs')
+var firebase = require('firebase')
+var config = {
+    apiKey: process.env.API,
+    authDomain: process.env.DOM,
+    databaseURL: process.env.URL,
+    projectId: process.env.ID,
+    storageBucket: "",
+    messagingSenderId: process.env.SID
+  };
+  firebase.initializeApp(config);
+var database = firebase.database()
 fs.readdir(`./commands/`,(err, files)=>{
   if(err) console.log(err)
   let jsfile = files.filter(f => f.split(".").pop() == "js")
@@ -19,7 +30,9 @@ fs.readdir(`./commands/`,(err, files)=>{
 
 
 client.on('ready', () => {
-	var high = ''
+	database.ref(`/staty/online`).once("value")
+	.then(async dbo => {
+	var high = dbo.val()
 	var moment = require('moment')
 	var ytspeak = client.guilds.get("349889832899706883")
 	
@@ -28,7 +41,12 @@ client.on('ready', () => {
 	var hr = new Date().getHours() +2
 	if(hr == 25) hr = 1
 		
-		if(high<online.size-ytspeak.members.filter(m => m.user.bot).size) high = online.size-ytspeak.members.filter(m => m.user.bot).size
+		if(high<online.size-ytspeak.members.filter(m => m.user.bot).size) {
+			high = online.size-ytspeak.members.filter(m => m.user.bot).size
+			database.ref(/staty/).set({ 
+				online:high
+			})
+		}
 client.channels.get("470869924647141397").edit({name: `Osób online: ${online.size-ytspeak.members.filter(m => m.user.bot).size}`});
   client.channels.get("470869840027189248").edit({name: `Liczba Członków: ${ytspeak.memberCount}`});
   client.channels.get("470869709525614592").edit({name: `Liczba botów: ${ytspeak.members.filter(m => m.user.bot).size}`})
@@ -37,6 +55,7 @@ client.channels.get("470869924647141397").edit({name: `Osób online: ${online.si
   client.channels.get("474892701213523968").edit({name:`Rekord Online: ${high}`})
   },1000)
   console.log(`Zalogowano jako ${client.user.username}`);
+	})
 });
 
 client.on('message', message => {
