@@ -50,7 +50,7 @@ client.on('ready', () => {
 			})
 		}
 client.channels.get("503173639760510976").edit({name: `Osób online: ${online.size-ytspeak.members.filter(m => m.user.bot).size}`});
-  client.channels.get("503173705766273024").edit({name: `Liczba Członków: ${ytspeak.memberCount}`});
+  client.channels.get("503173705766273024").edit({name: `Użytkownicy: ${ytspeak.memberCount}`});
 //   client.channels.get("503173739886936085").edit({name: `Liczba botów: ${ytspeak.members.filter(m => m.user.bot).size}`})
   client.channels.get("503173762095513601").edit({name: `Data: ${moment.utc(new Date()).format('DD.MM.YYYY')}`})
   client.channels.get("503173903254945802").edit({name: `Godzina: ${hr}:${moment.utc(new Date()).format('mm:ss')}`})
