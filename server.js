@@ -49,12 +49,12 @@ client.on('ready', () => {
 				online:high
 			})
 		}
-client.channels.get("470869924647141397").edit({name: `Osób online: ${online.size-ytspeak.members.filter(m => m.user.bot).size}`});
-  client.channels.get("470869840027189248").edit({name: `Liczba Członków: ${ytspeak.memberCount}`});
-  client.channels.get("470869709525614592").edit({name: `Liczba botów: ${ytspeak.members.filter(m => m.user.bot).size}`})
-  client.channels.get("473410352013508610").edit({name: `Data: ${moment.utc(new Date()).format('DD.MM.YYYY')}`})
-  client.channels.get("473410461669392385").edit({name: `Godzina: ${hr}:${moment.utc(new Date()).format('mm:ss')}`})
-  client.channels.get("474892701213523968").edit({name:`Rekord Online: ${high}`})
+client.channels.get("503173639760510976").edit({name: `Osób online: ${online.size-ytspeak.members.filter(m => m.user.bot).size}`});
+  client.channels.get("503173705766273024").edit({name: `Liczba Członków: ${ytspeak.memberCount}`});
+//   client.channels.get("503173739886936085").edit({name: `Liczba botów: ${ytspeak.members.filter(m => m.user.bot).size}`})
+  client.channels.get("503173762095513601").edit({name: `Data: ${moment.utc(new Date()).format('DD.MM.YYYY')}`})
+  client.channels.get("503173903254945802").edit({name: `Godzina: ${hr}:${moment.utc(new Date()).format('mm:ss')}`})
+  client.channels.get("503173739886936085").edit({name:`Rekord Online: ${high}`})
   },1000)
   console.log(`Zalogowano jako ${client.user.username}`);
 	})
